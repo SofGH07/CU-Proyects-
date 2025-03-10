@@ -1,0 +1,14 @@
+// Program that returns the sum of all the elements ins a column
+#include <iostream>
+
+int main(istream) {
+
+const int Size= 4;
+double sumColumn(cont double m[] [SIZE], int 3, int 4);
+
+For (int row= 3; row <3; row++);
+For (int colum= 4; row <4; column++);
+matrix [row] [column]=rand0 % 100;
+
+    return 0;
+}
