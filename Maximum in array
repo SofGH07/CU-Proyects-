@@ -1,0 +1,43 @@
+//Max Array
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template <typename T>
+T findMax(const T arr[], int size) {
+    if (size <= 0) {
+        cout << "ERROR: Array is empty or has the wrong size.\n";
+        return T();
+    }
+
+    T biggest = arr[0]; 
+
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > biggest) {
+            biggest = arr[i];
+        }
+    }
+    
+    return biggest; 
+}
+
+int main() {
+    
+    // Biggest number in an array (int)
+    int numbers[] = {10, 17, 23, 6, 27};
+    int numCount = sizeof(numbers) / sizeof(numbers[0]);
+    cout << "Biggest integer: " << findMax(numbers, numCount) << endl;
+
+    // Biggest number in an array of decimals (double)
+    double decimals[] = {5.81, 3.14, 3.17, 9.01};
+    int decCount = sizeof(decimals) / sizeof(decimals[0]);
+    cout << "Biggest decimal: " << findMax(decimals, decCount) << endl;
+
+     // Biggest WORD in an array(string)
+    string stringArray[] = {"Array", "Program", "Mouse", "Belton"};
+    int stringSize = sizeof(stringArray) / sizeof(stringArray[0]);
+    cout << "Max string: " << findMax(stringArray, stringSize) << endl; 
+
+    return 0;
+}
