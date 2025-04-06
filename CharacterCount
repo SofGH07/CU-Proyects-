@@ -1,0 +1,45 @@
+// Count characters
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string filename;
+
+    cout << "Enter the name of your file: ";
+    if (!(getline(cin, filename))) {
+        cerr << "ERROR: Unable to read file name." << endl;
+        return 1;
+    }
+
+    ifstream inputFile(filename);
+
+    if (!inputFile.is_open()) {
+        cerr << "ERROR: Could not open your file '" << filename << "'" << endl;
+        return 1;
+    }
+
+    int charCount = 0;
+    char ch;
+
+    // Check for end of file
+    while (inputFile.get(ch)) {
+        charCount++;
+    }
+
+    inputFile.close();
+
+    if (charCount == 0) {
+        cout << "The file '" << filename << "' is empty." << endl;
+    } else {
+        cout << "The file '" << filename << "' contains " << charCount << " characters." << endl;
+    }
+
+    cout << "Press Enter to exit..." << endl;
+    cin.get();
+
+    return 0;
+}
