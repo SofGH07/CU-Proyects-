@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+int main() {
+    const std::string filename = "numbers.txt";
+    std::ifstream inputFile(filename);
+
+    if (!inputFile) {
+        std::cerr << "EROR opening '" << filename << "' for reading.\n";
+        return 1;
+    }
+
+    std::vector<int> numbers;
+    std::istream_iterator<int> it(inputFile), end;
+    std::copy(it, end, std::back_inserter(numbers));
+    inputFile.close();
+
+    if (numbers.size() != 100) {
+        std::cerr << "Expected 100 numbers in '" << filename << "', found " << numbers.size() << ".\n";
+        return 1;
+    }
+
+    std::sort(numbers.begin(), numbers.end());
+
+    std::ofstream outputFile(filename);
+    if (!outputFile) {
+        std::cerr << "ERROR opening '" << filename << "' for writing.\n";
+        return 1;
+    }
+
+    std::ostream_iterator<int> out_it(outputFile, " ");
+    std::copy(numbers.begin(), numbers.end(), out_it);
+    outputFile << '\n';
+    outputFile.close();
+
+    std::cout << "File '" << filename << "' processed: numbers read, sorted, and written back.\n";
+
+    return 0;
+}
