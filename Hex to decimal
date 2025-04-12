@@ -1,0 +1,52 @@
+//hex number as a string and display the number in decimal
+#include <iostream>
+#include <string>
+#include <stdexcept>
+#include <cctype> 
+
+int hex2Dec(const std::string& hexString) {
+    int decimalValue = 0;
+    
+    for (char character : hexString) {
+        
+        character = std::toupper(character);
+
+        int digitValue = 0; 
+
+        if (character >= '0' && character <= '9') {
+            
+            digitValue = character - '0';
+        } else if (character >= 'A' && character <= 'F') {
+            
+            digitValue = character - 'A' + 10;
+        } else {
+           
+            throw std::invalid_argument("Invalid hexadecimal character in string: " + std::string(1, character));
+            
+        }
+        
+        decimalValue = decimalValue * 16 + digitValue;
+    }
+    return decimalValue;
+    }
+
+int main() {
+    std::string hexString; 
+
+  
+    std::cout << "Enter a hex number: ";
+    std::cin >> hexString; 
+    
+try {
+       
+        int decimalValue = hex2Dec(hexString);
+        
+    std::cout << "Decimal value: " << decimalValue << std::endl;
+    } catch (const std::invalid_argument& e) {
+       
+    std::cerr << "Error: " << e.what() << std::endl;
+    return 1; 
+    }
+    
+return 0; 
+}
