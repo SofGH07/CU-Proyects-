@@ -1,0 +1,29 @@
+// Linear search
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <typename T>
+int linearSearch(const T list[], T key, int size) {
+    for (int i = 0; i < size; i++) {
+        if (list[i] == key)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+    int numbers[] = {6, 10, 17, 23, 27}; 
+    int numCount = sizeof(numbers) / sizeof(numbers[0]);
+    cout << "Index of 23: " << linearSearch(numbers, 23, numCount) << endl;
+
+    double decimals[] = {3.14, 3.17, 5.81, 9.01}; 
+    int decCount = sizeof(decimals) / sizeof(decimals[0]);
+    cout << "Index of 9.01: " << linearSearch(decimals, 9.01, decCount) << endl;
+
+    string stringArray[] = {"Array", "Belton", "Mouse", "Program"}; 
+    int stringSize = sizeof(stringArray) / sizeof(stringArray[0]);
+    cout << "Index of Mouse: " << linearSearch(stringArray, string("Mouse"), stringSize) << endl;
+
+    return 0;
+}
