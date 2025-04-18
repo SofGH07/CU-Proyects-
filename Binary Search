@@ -1,0 +1,41 @@
+//Binary search
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <typename T>
+int binarySearch(const T list[], T key, int size) {
+    int low = 0;
+    int high = size - 1;
+
+    while (high >= low) {
+        int mid = (low + high) / 2;
+        if (key < list[mid])
+            high = mid - 1;
+        else if (key == list[mid])
+            return mid;
+        else
+            low = mid + 1;
+    }
+
+    return -1;
+}
+
+int main() {
+  
+    int numbers[] = {6, 10, 17, 23, 27}; 
+    int numCount = sizeof(numbers) / sizeof(numbers[0]);
+    cout << "Index of 23: " << binarySearch(numbers, 23, numCount) << endl;
+
+    double decimals[] = {3.14, 3.17, 5.81, 9.01}; 
+    int decCount = sizeof(decimals) / sizeof(decimals[0]);
+    cout << "Index of 9.01: " << binarySearch(decimals, 9.01, decCount) << endl;
+
+  
+    string stringArray[] = {"Array", "Belton", "Mouse", "Program"}; 
+    
+    int stringSize = sizeof(stringArray) / sizeof(stringArray[0]);
+    cout << "Index of Mouse: " << binarySearch(stringArray, string("Mouse"), stringSize) << endl;
+
+    return 0;
+}
